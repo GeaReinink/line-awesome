@@ -10,7 +10,7 @@ $la-li-width: (20em / 14) !default;
   @return unquote("\"#{ $la-var }\"");
 }
 
-$la-css-prefix: la;
+$la-css-prefix: la !default;
 
 $la-font-name-lar: Line Awesome Free !default;
 $la-css-prefix-lar: lar !default;
