@@ -7,7 +7,7 @@ trigger:
   batch: "true"
   branches:
     include:
-      - develop
+      - master
       - releases/*
     exclude:
       - feature/*
@@ -17,14 +17,13 @@ pr:
   branches:
     include:
       - master
-      - develop
 
 pool:
   name: "Default"
 
 variables:
   npm_config_cache: $(Pipeline.Workspace)/.npm
-  isDevelop: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
   - task: NodeTool@0
@@ -34,7 +33,7 @@ steps:
 
   - task: Npm@1
     displayName: "Publish artifact"
-    condition: and(succeeded(), eq(variables.isDevelop, 'true'))
+    condition: and(succeeded(), eq(variables.isMaster, 'true'))
     inputs:
       command: publish
       publishRegistry: useFeed
