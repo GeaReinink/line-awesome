@@ -1,0 +1,43 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  batch: "true"
+  branches:
+    include:
+      - develop
+      - releases/*
+    exclude:
+      - feature/*
+
+pr:
+  autoCancel: "true"
+  branches:
+    include:
+      - master
+      - develop
+
+pool:
+  name: "Default"
+
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+  isDevelop: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "14.15.5"
+    displayName: "Install Node.js"
+
+  - task: Npm@1
+    displayName: "Publish artifact"
+    condition: and(succeeded(), eq(variables.isDevelop, 'true'))
+    inputs:
+      command: publish
+      publishRegistry: useFeed
+      publishFeed: Archipel_Library
+      publishPackageMetadata: true
+      verbose: true
