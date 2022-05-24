@@ -14,6 +14,12 @@ Check out a [live preview](https://icons8.com/line-awesome) of the Line Awesome.
 
 This is a fork of line-awesome. This repo is necessary to overwrite the default prefix for line awesome icons from la-icon to ar-icon.
 
+## Updates
+
+### 1.2.2
+
+Uses math.div instead of /, as the latter is deprecated
+
 ## Installing
 
 Line Awesome can be loaded via CDN or downloaded as zip archive. You can read more about this options on [Line Awesome how-to page](https://icons8.com/line-awesome/howto).
