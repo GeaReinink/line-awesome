@@ -16,8 +16,9 @@ This is a fork of line-awesome. This repo is necessary to overwrite the default 
 
 ## Updates
 
-### 1.2.2
+### 1.2.2 & 1.2.3
 
+These versions do only exist in our own library.
 Uses math.div instead of /, as the latter is deprecated
 
 ## Installing
